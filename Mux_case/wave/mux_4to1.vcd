@@ -1,0 +1,66 @@
+$date
+	Tue Dec 23 20:15:57 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module mux_4to1_case_tb $end
+$var wire 1 ! y $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var reg 1 $ c $end
+$var reg 1 % d $end
+$var reg 2 & selection [1:0] $end
+$scope module dut $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 $ c $end
+$var wire 1 % d $end
+$var wire 2 ' selection [1:0] $end
+$var reg 1 ! y $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 '
+b0 &
+0%
+0$
+0#
+0"
+0!
+$end
+#10000
+b1 &
+b1 '
+#20000
+b10 &
+b10 '
+#30000
+b11 &
+b11 '
+#40000
+b0 &
+b0 '
+1%
+1#
+#50000
+1!
+b1 &
+b1 '
+#60000
+0!
+b10 &
+b10 '
+#70000
+1!
+b11 &
+b11 '
+#80000
