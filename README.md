@@ -25,26 +25,26 @@ every project includes:
 ## projects included
 
 ### 1. 8-bit alu
-**path:** `alu-8bit/`
+**path:** `ALU_8bit_Verilog/`
 
 ---
 
 ### 2. parameterized n-bit adder
-**path:** `adder-nbit/`
+**path:** `N_Bit_Adder/`
 
 ---
 
 ### 3. multiplexer using case statement
-**path:** `mux-case/`
+**path:** `Mux_case/`
 
 ---
 
 ### 4. magnitude comparator
-**path:** `comparator/`
+**path:** `Comparator_1&4/`
 
 ---
 
 ### 5. binary to gray code converter
-**path:** `binary-to-gray/`
+**path:** `BinarytoGray/`
 
 ---
