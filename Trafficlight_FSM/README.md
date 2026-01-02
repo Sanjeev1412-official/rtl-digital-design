@@ -3,6 +3,8 @@
 
 A parameterized **2-way traffic light controller** implemented as a **Moore finite state machine (FSM)** in SystemVerilog, with a self-check-friendly testbench and waveform (VCD) dump for debug/verification.
 
+---
+
 ## Highlights
 
 - **Moore FSM** with 4 states: NS green → NS yellow → EW green → EW yellow
@@ -10,6 +12,8 @@ A parameterized **2-way traffic light controller** implemented as a **Moore fini
 - **Safe reset behavior**: when `rst=1`, outputs hold **all-red**
 - **Clean outputs**: per direction, **exactly one** of {red, yellow, green} is asserted at a time
 - Generates a **VCD waveform** for GTKWave or other viewers
+
+---
 
 ## Design Specification
 
@@ -28,6 +32,8 @@ A parameterized **2-way traffic light controller** implemented as a **Moore fini
 - The controller stays in each **yellow** state for `YELLOW_TIME` cycles.
 - A simple internal `timer` counts cycles and triggers state transitions.
 
+---
+
 ## Interface
 
 Module: `traffic_light_fsm`
@@ -39,37 +45,19 @@ Inputs:
 Outputs (active-high):
 - North–South: `ns_red`, `ns_yellow`, `ns_green`
 - East–West: `ew_red`, `ew_yellow`, `ew_green`
-
-## Project Structure
-
-| Path | Description |
-|------|-------------|
-| [src/traffic_light_fsm.sv](src/traffic_light_fsm.sv) | FSM RTL implementation |
-| [tb/tb_traffic_light_fsm.sv](tb/tb_traffic_light_fsm.sv) | Testbench + VCD dump |
-| [wave/](wave/) | Simulation outputs (VCD) |
+---
 
 ## How to Run (Icarus Verilog)
 
-From the `Trafficlight_FSM/` folder:
 
 ```bash
-iverilog -g2012 -o tlc.vvp .\src\traffic_light_fsm.sv .\tb\tb_traffic_light_fsm.sv
+iverilog -g2012 -o tlc.vvp Trafficlight_FSM\src\traffic_light_fsm.sv Trafficlight_FSM\tb\tb_traffic_light_fsm.sv
 vvp .\tlc.vvp
-```
-
-This produces:
-- Console trace of the light outputs each clock edge
-- Waveform file: `wave/traffic_light_fsm.vcd`
-
-### View Waveform
-
-Open the VCD using GTKWave:
-
-```bash
 gtkwave .\wave\traffic_light_fsm.vcd
 ```
+---
 
-## Expected Behavior (Quick Sanity)
+## Expected Behavior
 
 During reset (`rst=1`):
 - `ns_red=1`, `ew_red=1`, and all yellow/green are `0`
@@ -80,9 +68,15 @@ After reset deasserted (`rst=0`):
 - EW green for `GREEN_TIME` cycles
 - EW yellow for `YELLOW_TIME` cycles
 - Repeat
+---
+## Learning Outcomes
 
-## Notes
+- Writing a **Moore FSM** using `typedef enum logic` state encoding
+- Separating **sequential** (`always_ff`) and **combinational** (`always_comb`) logic cleanly
+- Implementing **parameterized timing** with counters (`GREEN_TIME`, `YELLOW_TIME`)
+- Designing **safe reset behavior** and deterministic power-up state
+- Producing and analyzing **VCD waveforms** (`$dumpfile`, `$dumpvars`) for debugging
+- Understanding simulation scheduling and why `$strobe` can be preferable to `$display` at clock edges
 
-- The testbench uses `$strobe` so printed values reflect the post-clock-update signals.
-- This module is intended as a clean, readable RTL example suitable for interviews and portfolio review.
+
 
