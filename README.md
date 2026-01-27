@@ -1,4 +1,4 @@
-# rtl digital design projects (verilog)
+# rtl digital design projects (verilog/systemverilog)
 
 ## overview
 
